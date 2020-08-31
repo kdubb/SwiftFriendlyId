@@ -1,0 +1,25 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "BigInt",
+        "repositoryURL": "https://github.com/attaswift/BigInt.git",
+        "state": {
+          "branch": null,
+          "revision": "e1f28276687d7661cbb2754771bd9fc281784e32",
+          "version": "5.2.0"
+        }
+      },
+      {
+        "package": "swift-argument-parser",
+        "repositoryURL": "https://github.com/apple/swift-argument-parser",
+        "state": {
+          "branch": null,
+          "revision": "15351c1cd009eba0b6e438bfef55ea9847a8dc4a",
+          "version": "0.3.0"
+        }
+      }
+    ]
+  },
+  "version": 1
+}
