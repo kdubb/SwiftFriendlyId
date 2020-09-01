@@ -29,14 +29,14 @@ enum Gen {
       pairs = .init(random: random)
     }
     
-    public mutating func next() -> UUID? {
+    public mutating func next() -> uuid_t? {
       guard let (upper, lower) = pairs.next() else { return nil }
       var uuid: uuid_t = (0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
       withUnsafeMutableBytes(of: &uuid) { uuidPtr in
         uuidPtr.storeBytes(of: upper, toByteOffset: 0, as: UInt64.self)
         uuidPtr.storeBytes(of: lower, toByteOffset: 8, as: UInt64.self)
       }
-      return UUID(uuid: uuid)
+      return uuid
     }
     
   }

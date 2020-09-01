@@ -42,42 +42,41 @@ The Swift package contains a command line for generating and converting to & fro
 
 Generate a new id (from a random v4 UUID)
 ```bash
-host# friendly-id
+$ friendly-id
 ```
 
 Convert a UUID into a "FriendlyId"
 ```bash
-friendly-id 921bcf08-1279-4e0a-9e0d-e5a1103c5def 
+$ friendly-id 921bcf08-1279-4e0a-9e0d-e5a1103c5def 
 ```
 
 Convert a FriendlyId into a UUID
 ```bash
-friendly-id 4RhaTeTKMOdHxagaj2XAcR 
+$ friendly-id 4RhaTeTKMOdHxagaj2XAcR 
 ```
 
 
-Swift Package Manager
+Swift Package
 ----
-FriendlyId can also be used as a dependency in your Swift projects
+FriendlyId can also be integrated into your Swift projects using Swift Package Manager.
 
-Add dependency
+Swift Package Manager dependency
 ```swift
 .package(url: "https://github.com/kdubb/SwiftFriendlyId.git", .upToNextMinor(from: "1.0.0")),
 ```
 
-Generate a FriendlyId (random v4 UUID algorithm)
-```
-FriendlyId.generate()
+Generate a FriendlyId
+```swift
+let id = Id(algorithm: .random)
 ```
 
 Convert UUID to FriendlyId
-```
-FriendlyId.encode(uuid: UUID("921bcf08-1279-4e0a-9e0d-e5a1103c5def")!)
+```swift
+let id = Id(uuid: UUID(uuidString: "921bcf08-1279-4e0a-9e0d-e5a1103c5def")!)
 ```
 
 Convert FriendlyId (or UUID) formatted string to UUID
-```java
-FriendlyId.decode(string: "4RhaTeTKMOdHxagaj2XAcR")
-FriendlyId.decode(string: "921bcf08-1279-4e0a-9e0d-e5a1103c5def")
+```swift
+let id = Id(string: "4RhaTeTKMOdHxagaj2XAcR")!
+let id = Id(string: "921bcf08-1279-4e0a-9e0d-e5a1103c5def")!
 ```
-

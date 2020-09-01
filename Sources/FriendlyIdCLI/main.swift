@@ -17,7 +17,7 @@ struct FriendlyIdConvert: ParsableCommand {
   
   mutating func run() throws {
     guard !inputId.isEmpty else {
-      print(FriendlyId.encode(uuid: UUID()))
+      print(FriendlyId.generate())
       return
     }
     
@@ -29,7 +29,7 @@ struct FriendlyIdConvert: ParsableCommand {
       print(FriendlyId.encode(uuid: parsedId))
     }
     else {
-      print(parsedId.uuidString)
+      print(UUID(uuid: parsedId).uuidString)
     }
   }
 }
