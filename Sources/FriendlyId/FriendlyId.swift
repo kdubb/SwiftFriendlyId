@@ -25,28 +25,24 @@ public func generate(algorithm: GenerationAlgorithm = .random) -> String {
       uuid_generate_time($0.baseAddress?.assumingMemoryBound(to: UInt8.self))
     }
   }
-  return encode(uuid: uuid)
+  return encode(uuid: UUID(uuid: uuid))
 }
 
 public func encode(uuid: UUID) -> String {
-  return encode(uuid: uuid.uuid)
-}
-
-public func encode(uuid: uuid_t) -> String {
   return Base62.encode(integer: BigUInt(uuid: uuid))
 }
 
-public func decode(string: String) -> uuid_t? {
+public func decode(string: String) -> UUID? {
   return decode(idOrUUIDString: string)?.0
 }
 
-public func decode(idOrUUIDString string: String) -> (uuid_t, Bool)? {
+public func decode(idOrUUIDString string: String) -> (UUID, Bool)? {
   guard !string.isEmpty else {
     return nil
   }
   
   if string.count > 32 {
-    guard let uuid = UUID(uuidString: string)?.uuid else {
+    guard let uuid = UUID(uuidString: string) else {
       return nil
     }
     return (uuid, true)

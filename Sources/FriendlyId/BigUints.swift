@@ -13,13 +13,13 @@ private let half = BigUInt(1) << 64
 
 extension BigUInt {
 
-  internal init(uuid: uuid_t) {
+  internal init(uuid: UUID) {
     self = withUnsafeBytes(of: uuid) { BigUInt($0) }
   }
   
   internal static let zeros = Data(repeating: 0, count: 0)
   
-  internal var uuid: uuid_t {
+  internal var uuid: UUID {
     // serialize data
     var data = serialize()
     // padded to 128 bits
@@ -30,7 +30,7 @@ extension BigUInt {
     withUnsafeMutableBytes(of: &uuid) { uuidPtr in
       data.withUnsafeBytes { uuidPtr.copyMemory(from: $0) }
     }
-    return uuid
+    return UUID(uuid: uuid)
   }
 
 }

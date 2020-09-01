@@ -29,7 +29,7 @@ struct FriendlyIdConvert: ParsableCommand {
       print(FriendlyId.encode(uuid: parsedId))
     }
     else {
-      print(UUID(uuid: parsedId).uuidString)
+      print(parsedId.uuidString)
     }
   }
 }

@@ -11,7 +11,7 @@ public struct Id: Equatable, Hashable, CustomStringConvertible {
   
   public static let null = Id(uuid: (0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0))
   
-  public var uuid: uuid_t
+  public var uuid: UUID
   
   public init?(string: String) {
     guard let uuid = decode(string: string) else {
@@ -36,38 +36,15 @@ public struct Id: Equatable, Hashable, CustomStringConvertible {
   }
 
   public init(uuid: UUID) {
-    self.uuid = uuid.uuid
-  }
-  
-  public init(uuid: uuid_t) {
     self.uuid = uuid
   }
   
-  public func hash(into hasher: inout Hasher) {
-    hasher.combine(uuid.0)
-    hasher.combine(uuid.1)
-    hasher.combine(uuid.2)
-    hasher.combine(uuid.3)
-    hasher.combine(uuid.4)
-    hasher.combine(uuid.5)
-    hasher.combine(uuid.6)
-    hasher.combine(uuid.7)
-    hasher.combine(uuid.8)
-    hasher.combine(uuid.9)
-    hasher.combine(uuid.10)
-    hasher.combine(uuid.11)
-    hasher.combine(uuid.12)
-    hasher.combine(uuid.13)
-    hasher.combine(uuid.14)
-    hasher.combine(uuid.15)
+  public init(uuid: uuid_t) {
+    self.uuid = UUID(uuid: uuid)
   }
   
   public var description: String {
     return encode(uuid: uuid)
-  }
-  
-  public static func == (lhs: Id, rhs: Id) -> Bool {
-    return lhs.uuid == rhs.uuid
   }
   
 }
