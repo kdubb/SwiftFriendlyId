@@ -14,7 +14,7 @@ public struct Id: Equatable, Hashable, CustomStringConvertible {
   public var uuid: UUID
   
   public init?(string: String) {
-    guard let uuid = decode(string: string) else {
+    guard let uuid = FriendlyId.decode(string: string) else {
       return nil
     }
     self.uuid = uuid
@@ -44,7 +44,25 @@ public struct Id: Equatable, Hashable, CustomStringConvertible {
   }
   
   public var description: String {
-    return encode(uuid: uuid)
+    return FriendlyId.encode(uuid: uuid)
+  }
+  
+}
+
+
+extension Id: Codable {
+  
+  public init(from decoder: Decoder) throws {
+    let container = try decoder.singleValueContainer()
+    guard let uuid = try decode(string: container.decode(String.self)) else {
+      throw DecodingError.dataCorruptedError(in: container, debugDescription: "Invalid Friendly Id")
+    }
+    self.init(uuid: uuid)
+  }
+  
+  public func encode(to encoder: Encoder) throws {
+    var container = encoder.singleValueContainer()
+    try container.encode(FriendlyId.encode(uuid: uuid))
   }
   
 }
