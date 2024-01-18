@@ -15,7 +15,7 @@ let package = Package(
       targets: ["FriendlyIdCLI"]),
   ],
   dependencies: [
-    .package(url: "https://github.com/apple/swift-argument-parser", from: "0.3.0"),
+    .package(url: "https://github.com/apple/swift-argument-parser", from: "1.3.0"),
     .package(url: "https://github.com/attaswift/BigInt.git", from: "5.1.0")
   ],
   targets: [
